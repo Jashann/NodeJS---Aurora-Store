@@ -1,0 +1,55 @@
+<%- include("layout/head") %>
+
+<form action="add-product" method="POST">
+  <div class="container">
+    <div class="form-group">
+      <label class="col-form-label" for="inputDefault">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Title"
+        id="title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label class="col-form-label" for="inputDefault">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Enter Price"
+        id="price"
+        name="price"
+        required
+        step=".01"
+      />
+    </div>
+    <div class="form-group">
+      <label class="col-form-label" for="inputDefault">Image Url</label>
+      <input
+        type="string"
+        class="form-control"
+        placeholder="Enter image url of the product"
+        id="image_url"
+        name="image_url"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleTextarea">Description</label>
+      <textarea
+        class="form-control"
+        id="exampleTextarea"
+        rows="5"
+        required
+        id="description"
+        name="description"
+        placeholder="Write something about the product"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Product</button>
+  </div>
+</form>
+
+<%- include("../shared/sharedEnd") %>

@@ -1,0 +1,42 @@
+<%- include("layout/head") %>
+
+<div class="container mt-5">
+  <div class="row products align-items-stretch">
+    <% Products.forEach((product)=>{ %>
+    <div class="col-12 col-md-4 col-lg-3">
+      <div class="product card mb-3 m-1 p-0">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            <span class="text-muted"><%= product.title %>: </span>
+            <span class="badge badge-success rounded-pill"
+              >$<%= product.price %></span
+            >
+          </h5>
+        </div>
+        <img
+          src="<%= product.image_url %>"
+          alt="<%= product.title %>"
+          srcset=""
+        />
+
+        <div
+          class="d-flex justify-content-center flex-column px-2 pb-4 text-muted mt-4"
+        >
+          <a
+            href="#"
+            class="add-to-cart product-btn btn btn-success rounded-pill d-flex justify-content-center align-items-center"
+            >Add to Cart
+            <ion-icon name="bag-add-sharp"></ion-icon>
+          </a>
+          <a
+            href="#"
+            class="view-product product-btn btn btn-info rounded-pill d-flex justify-content-center align-items-center mt-2"
+            >View Product
+            <ion-icon name="arrow-forward-circle-sharp"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+    <% })%>
+  </div>
+</div>
