@@ -1,0 +1,87 @@
+<%- include("layout/head") %>
+
+<div class="single-product">
+  <div class="container py-5">
+    <h2 class="text-center"><%= product.title %></h2>
+
+    <div
+      id="carouselExampleControls"
+      class="carousel slide mt-5"
+      data-ride="carousel"
+    >
+      <ol class="carousel-indicators">
+        <% product.image_url.forEach( (url,index) => { %>
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="<%= index %>"
+          class="<%- index===0 ? 'active' : '' %>"
+        ></li>
+        <% }) %>
+      </ol>
+
+      <div class="carousel-inner">
+        <% product.image_url.forEach( (url,index) => { %>
+        <div class="carousel-item <%- index===0 ? 'active' : '' %>">
+          <img src="<%=url%>" alt="<%= product.title %>" />
+        </div>
+        <% }) %>
+        <a
+          class="carousel-control-prev"
+          href="#carouselExampleControls"
+          role="button"
+          data-slide="prev"
+        >
+          <div class="icon-container">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </div>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carouselExampleControls"
+          role="button"
+          data-slide="next"
+        >
+          <div class="icon-container">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- End of Carousel -->
+
+    <div class="row mt-5">
+      <div class="col-12 col-md-7">
+        <div class="card" style="max-width: 40rem">
+          <div class="card-header font-weight-bold">
+            Product Description - <%= product.title %>
+          </div>
+          <div class="card-body">
+            <p class="lead font-weight-bold"><%= product.description %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-5">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Price: $<%=product.price %></h4>
+            <h4 class="card-title">Rating: <%=product.rating %></h4>
+            <a
+              href="#"
+              class="add-to-cart icon-button up btn btn-success rounded-pill d-flex justify-content-center align-items-center"
+              >Add to Cart
+              <ion-icon
+                name="bag-add-sharp"
+                role="img"
+                class="md hydrated text-light"
+                aria-label="bag add sharp"
+              ></ion-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Container -->
+</div>
