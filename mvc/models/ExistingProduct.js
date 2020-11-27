@@ -26,15 +26,13 @@ class ExistingProduct {
     this.image_url.push(image_url)
   }
 
-  writeDataToFile = () => {
-    Product.readDatafromFile((data) => {
+  updateProductToFile = () => {
+    HELPER.readDatafromFile(filePath, (data) => {
       const currentProduct = data.find((product) => product.id === this.id)
       currentProduct.title = this.title
       currentProduct.price = this.price
       currentProduct.image_url = this.image_url
       currentProduct.description = this.description
-
-      data.push(currentProduct)
 
       fs.writeFile(filePath, JSON.stringify(data), (err) => {
         if (err) alert(err.message)

@@ -1,6 +1,5 @@
 // Node - Core Modules
 const path = require('path')
-const fs = require('fs')
 
 // My Modules
 const HELPER = require('./../../helper')
@@ -23,21 +22,22 @@ class Product {
     this.image_url.push(image_url)
   }
 
-  static readDatafromFile = (cb) => {
-    fs.readFile(filePath, (error, data) => {
-      let parsedData = []
-      if (error) {
-        if (error.errno === -4058) cb(parsedData)
-        else alert(error.message)
-      } else {
-        parsedData = JSON.parse(data)
-        cb(parsedData)
-      }
-    })
-  }
+  // static readDatafromFile = (cb) => {
+  //   fs.readFile(filePath, (error, data) => {
+  //     let parsedData = []
+  //     if (error) {
+  //       if (error.errno === -4058) cb(parsedData)
+  //       else alert(error.message)
+  //     } else {
+  //       parsedData = JSON.parse(data)
+  //       cb(parsedData)
+  //     }
+  //   })
+  // }
 
-  writeDataToFile = () => {
-    Product.readDatafromFile((data) => {
+  addProductToFile = () => {
+    // filePath => data.json
+    HELPER.readDatafromFile(filePath, (data) => {
       const dataToBeAdded = {
         title: this.title,
         price: this.price,
@@ -47,20 +47,47 @@ class Product {
       }
 
       data.push(dataToBeAdded)
-
-      fs.writeFile(filePath, JSON.stringify(data), (err) => {
-        if (err) alert(err.message)
-        else console.log('Data written!!')
+      // Product.writeJsonToFile(data)
+      HELPER.writeDataToFile(filePath, data, (success) => {
+        if (success) console.log('Product added')
       })
     })
   }
 
+  // static writeJsonToFile = (data, cb) => {
+  //   fs.writeFile(filePath, JSON.stringify(data), (err) => {
+  //     if (err) {
+  //       alert(err.message)
+  //       if (cb) cb(null)
+  //     } else {
+  //       console.log('Operation Performed!')
+  //       if (cb) cb(true)
+  //     }
+  //   })
+  // }
+
+  static readData(cb) {
+    HELPER.readDatafromFile(filePath, (data) => cb(data))
+  }
+
   static getProductById = (productID, cb) => {
-    this.readDatafromFile((products) => {
+    HELPER.readDatafromFile(filePath, (products) => {
       if (products) {
         const product = products.find((product) => product.id === productID)
         cb(product)
       } else cb(null)
+    })
+  }
+
+  static deleteProduct = (productID, cb) => {
+    HELPER.readDatafromFile(filePath, (data) => {
+      if (data) {
+        const updatedData = data.filter((product) => product.id !== productID)
+        HELPER.writeDataToFile(filePath, updatedData, (success) => {
+          if (success) cb(true)
+          else cb(false)
+        })
+      }
     })
   }
 }

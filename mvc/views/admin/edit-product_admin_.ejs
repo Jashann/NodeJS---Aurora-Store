@@ -103,15 +103,17 @@
       >
     </div>
     <%if (!editing) { %>
-    <button type="submit" class="btn btn-success icon-button">
+    <button type="submit" class="btn btn-success icon-button w-100">
       Add Product <ion-icon name="add-circle-outline"></ion-icon>
     </button>
     <% } else {%>
-    <button type="submit" class="btn btn-info icon-button up">
+    <button type="submit" class="btn btn-info icon-button w-100 up">
       Edit Product <ion-icon name="create-sharp"></ion-icon>
     </button>
     <% } %>
   </div>
 </form>
+
+<div class="my-5"></div>
 
 <%- include("../shared/sharedEnd") %>

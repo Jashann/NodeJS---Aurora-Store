@@ -29,12 +29,19 @@
             >Edit
             <ion-icon name="create-sharp"></ion-icon>
           </a>
-          <a
-            href="#"
-            class="icon-button btn btn-danger rounded-pill d-flex justify-content-center align-items-center mt-2"
-            >Delete
-            <ion-icon name="close-circle-sharp"></ion-icon>
-          </a>
+          <form
+            action="/admin/delete-product?id=<%= product.id %>"
+            method="POST"
+          >
+            <button
+              type="submit"
+              class="w-100 icon-button btn btn-danger rounded-pill d-flex justify-content-center align-items-center mt-2"
+            >
+              Delete
+              <ion-icon name="close-circle-sharp"></ion-icon>
+            </button>
+          </form>
+
           <a
             href="/products/<%=product.id%>"
             class="icon-button btn btn-info rounded-pill d-flex justify-content-center align-items-center mt-2"

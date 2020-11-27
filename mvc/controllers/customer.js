@@ -1,5 +1,6 @@
 // My Modules
 const Product = require('./../models/Product')
+const Cart = require('./../models/Cart')
 
 module.exports.getIndexPage = (req, res, next) => {
   res.render('index', {
@@ -9,7 +10,7 @@ module.exports.getIndexPage = (req, res, next) => {
 }
 
 module.exports.getProductsPage = (req, res, next) => {
-  Product.readDatafromFile((data) => {
+  Product.readData((data) => {
     res.render('products', {
       activeLink: '/products',
       pageTitle: 'Products - Aurora Store',
@@ -42,4 +43,9 @@ module.exports.getSingleProductPage = (req, res, next) => {
         product,
       })
   })
+}
+
+module.exports.postAddProductToCart = (req, res, next) => {
+  const productID = req.body.productID
+  Cart.addProduct(productID)
 }

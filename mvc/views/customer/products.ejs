@@ -22,12 +22,21 @@
         <div
           class="d-flex justify-content-center flex-column px-2 pb-4 text-muted mt-4"
         >
-          <a
-            href="#"
-            class="add-to-cart icon-button up btn btn-success rounded-pill d-flex justify-content-center align-items-center"
-            >Add to Cart
-            <ion-icon name="bag-add-sharp"></ion-icon>
-          </a>
+          <form action="/add-to-cart" method="POST">
+            <button
+              type="submit"
+              class="w-100 add-to-cart icon-button up btn btn-success rounded-pill d-flex justify-content-center align-items-center"
+            >
+              Add to Cart
+              <ion-icon name="bag-add-sharp"></ion-icon>
+            </button>
+            <input
+              type="hidden"
+              value="<%= product.id %>"
+              name="productID"
+              id="productID"
+            />
+          </form>
           <a
             href="/products/<%=product.id%>"
             class="icon-button btn btn-info rounded-pill d-flex justify-content-center align-items-center mt-2"

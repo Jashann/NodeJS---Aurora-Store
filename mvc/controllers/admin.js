@@ -32,8 +32,7 @@ class Admin {
 
     product.displayData()
 
-    p
-    roduct.writeDataToFile()
+    product.addProductToFile()
 
     res.redirect('/admin/products')
   }
@@ -55,9 +54,7 @@ class Admin {
       currentProduct.setImage(req.body[`image_url_${i + 1}`])
     }
 
-    currentProduct.displayData()
-
-    currentProduct.writeDataToFile()
+    currentProduct.updateProductToFile()
 
     res.redirect('/admin/products')
   }
@@ -67,7 +64,6 @@ class Admin {
     const editing = Boolean(req.query.editing)
     if (editing) {
       Product.getProductById(productID, (product) => {
-        console.log(product)
         if (product)
           res.render('edit-product_admin_', {
             pageTitle: `Edit Product - ${product.title}`,
@@ -81,12 +77,19 @@ class Admin {
   }
 
   static getProductsPage = (req, res, next) => {
-    Product.readDatafromFile((data) => {
+    Product.readData((data) => {
       res.render('products-list_admin_', {
         activeLink: '/admin/products',
         pageTitle: 'Admin - Products',
         Products: data,
       })
+    })
+  }
+
+  static postDeleteProduct = (req, res, next) => {
+    const productID = req.query.id
+    Product.deleteProduct(productID, (success) => {
+      if (success) res.redirect('/admin/products')
     })
   }
 }

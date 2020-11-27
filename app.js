@@ -28,4 +28,8 @@ app.set('view engine', 'ejs')
 app.use('/', customerRoutes)
 app.use('/admin', adminRoutes)
 
+app.use((req, res) => {
+  res.send('Invalid Request')
+})
+
 app.listen(1500, () => console.log('SERVER STARTED!!'))
