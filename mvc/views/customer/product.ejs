@@ -67,17 +67,21 @@
           <div class="card-body">
             <h4 class="card-title">Price: $<%=product.price %></h4>
             <h4 class="card-title">Rating: <%=product.rating %></h4>
-            <a
-              href="#"
-              class="add-to-cart icon-button up btn btn-success rounded-pill d-flex justify-content-center align-items-center"
-              >Add to Cart
-              <ion-icon
-                name="bag-add-sharp"
-                role="img"
-                class="md hydrated text-light"
-                aria-label="bag add sharp"
-              ></ion-icon>
-            </a>
+            <form action="/add-to-cart" method="POST">
+              <button
+                type="submit"
+                class="w-100 add-to-cart icon-button up btn btn-success rounded-pill d-flex justify-content-center align-items-center"
+              >
+                Add to Cart
+                <ion-icon class="text-light" name="bag-add-sharp"></ion-icon>
+              </button>
+              <input
+                type="hidden"
+                value="<%= product.id %>"
+                name="productID"
+                id="productID"
+              />
+            </form>
           </div>
         </div>
       </div>

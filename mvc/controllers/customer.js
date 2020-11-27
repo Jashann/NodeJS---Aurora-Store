@@ -9,6 +9,13 @@ module.exports.getIndexPage = (req, res, next) => {
   })
 }
 
+module.exports.getOrderPage = (req, res, next) => {
+  res.render('order', {
+    activeLink: '/order',
+    pageTitle: 'My Order - Aurora Store',
+  })
+}
+
 module.exports.getProductsPage = (req, res, next) => {
   Product.readData((data) => {
     res.render('products', {
@@ -16,20 +23,6 @@ module.exports.getProductsPage = (req, res, next) => {
       pageTitle: 'Products - Aurora Store',
       Products: data,
     })
-  })
-}
-
-module.exports.getCartPage = (req, res, next) => {
-  res.render('cart', {
-    activeLink: '/cart',
-    pageTitle: 'My Cart - Aurora Store',
-  })
-}
-
-module.exports.getOrderPage = (req, res, next) => {
-  res.render('order', {
-    activeLink: '/order',
-    pageTitle: 'My Order - Aurora Store',
   })
 }
 
@@ -47,5 +40,29 @@ module.exports.getSingleProductPage = (req, res, next) => {
 
 module.exports.postAddProductToCart = (req, res, next) => {
   const productID = req.body.productID
-  Cart.addProduct(productID)
+  Cart.addProduct(productID, (success) => res.redirect('/products'))
+}
+
+module.exports.getCartPage = (req, res, next) => {
+  Cart.getCartItems((data) => {
+    res.render('cart', {
+      activeLink: '/cart',
+      pageTitle: 'My Cart - Aurora Store',
+      products: data,
+    })
+  })
+}
+
+module.exports.postDeleteProductFromCart = (req, res, next) => {
+  Cart.deleteProduct(req.query.id, (success) => {
+    if (success) res.redirect('/cart')
+  })
+}
+
+module.exports.postUpdateProductInCart = (req, res, next) => {
+  const { id, type } = req.query
+
+  Cart.updateProduct(id, type, (success) => {
+    if (success) res.redirect('/cart')
+  })
 }

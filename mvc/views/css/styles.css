@@ -9,6 +9,10 @@ label {
   font-weight: 900;
 }
 
+ion-icon {
+  font-size: 32px;
+}
+
 .products .card-body {
   padding: 1rem;
 }
@@ -71,4 +75,34 @@ label {
 .icon-button.up ion-icon {
   position: relative;
   top: -4px;
+}
+
+table td,
+.table th {
+  vertical-align: middle;
+}
+
+tbody tr {
+  color: #55595c;
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-hover tbody tr:hover {
+  color: #55595c;
+  background-color: rgb(255 255 255 / 23%);
+}
+
+#cart-table-container a {
+  color: #1a1a1a;
+  text-decoration: none;
+  background-color: transparent;
+  border-bottom: 1px solid #89746b;
+  border-bottom-style: dashed;
+}
+
+#cart-table-container .table button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
 }
