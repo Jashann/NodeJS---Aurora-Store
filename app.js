@@ -9,6 +9,9 @@ const bodyParser = require('body-parser')
 const customerRoutes = require('./mvc/routes/customer')
 const adminRoutes = require('./mvc/routes/admin')
 
+// port
+const port = process.env.PORT || 1500 
+
 const app = express()
 
 // for using css and javascript files in ejs/html.
@@ -32,4 +35,4 @@ app.use((req, res) => {
   res.send('Invalid Request')
 })
 
-app.listen(1500, () => console.log('SERVER STARTED!!'))
+app.listen(port, () => console.log('SERVER STARTED!!'))
